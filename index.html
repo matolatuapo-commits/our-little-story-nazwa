@@ -1,0 +1,592 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8dce8">
+    <meta name="description" content="A little place for our beautiful memories.">
+
+    <title>Our Little Story — Nazwa & Muhammad</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- STYLE TAMBAHAN: FOTO DEPAN INTERAKTIF -->
+    <style>
+        .hero-visual.photo-showcase .hero-photo {
+            position: absolute;
+            cursor: pointer;
+            overflow: hidden;
+            transition: top .65s ease, left .65s ease, right .65s ease,
+                        width .65s ease, height .65s ease, transform .65s ease,
+                        opacity .4s ease, box-shadow .65s ease;
+            transform-origin: center;
+        }
+
+        .hero-visual.photo-showcase .hero-photo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-visual.photo-showcase .hero-photo[data-position="main"] {
+            z-index: 10;
+            width:  min(58%, 310px);
+            height:  min(72%, 390px);
+            top: 12%;
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%) rotate(-3deg);
+            box-shadow: 0 22px 48px rgba(70, 35, 60, .24);
+        }
+
+        .hero-visual.photo-showcase .hero-photo[data-position="one"] {
+            z-index: 5;
+            width: 29%;
+            height: 31%;
+            top: 65%;
+            left: 0;
+            right: auto;
+            transform: rotate(-9deg);
+        }
+
+        .hero-visual.photo-showcase .hero-photo[data-position="two"] {
+            z-index: 6;
+            width: 29%;
+            height: 31%;
+            top: 2%;
+            left: auto;
+            right: 0;
+            transform: rotate(8deg);
+        }
+
+        .hero-visual.photo-showcase .hero-photo[data-position="three"] {
+            z-index: 5;
+            width: 29%;
+            height: 31%;
+            top: 68%;
+            left: auto;
+            right: 0;
+            transform: rotate(7deg);
+        }
+
+        .hero-visual.photo-showcase .hero-photo:not([data-position="main"]):hover,
+        .hero-visual.photo-showcase .hero-photo:not([data-position="main"]):focus-visible {
+            z-index: 15;
+            transform: scale(1.07) rotate(0deg);
+            outline: 2px solid #e58bb2;
+            outline-offset: 3px;
+        }
+
+        .hero-visual.photo-showcase .hero-photo[data-position="main"]:focus-visible {
+            outline: 2px solid #e58bb2;
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 700px) {
+            .hero-visual.photo-showcase .hero-photo[data-position="main"] {
+                width: 55%;
+                height: 62%;
+                top: 15%;
+            }
+            .hero-visual.photo-showcase .hero-photo[data-position="one"],
+            .hero-visual.photo-showcase .hero-photo[data-position="two"],
+            .hero-visual.photo-showcase .hero-photo[data-position="three"] {
+                width: 27%;
+                height: 25%;
+            }
+            .hero-visual.photo-showcase .hero-photo[data-position="one"] {
+                top: 70%; left: 1%; right: auto;
+            }
+            .hero-visual.photo-showcase .hero-photo[data-position="two"] {
+                top: 2%; left: auto; right: 1%;
+            }
+            .hero-visual.photo-showcase .hero-photo[data-position="three"] {
+                top: 72%; left: auto; right: 1%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div id="hearts" aria-hidden="true"></div>
+
+    <!-- NAVBAR -->
+    <header class="topbar">
+
+        <a class="brand" href="#home">
+            <span class="brand-mark">♡</span>
+            our little story
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
+            ☰
+        </button>
+
+        <nav id="nav">
+            <a href="#home">Home</a>
+            <a href="#story">Our Story</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#videos">Videos</a>
+            <a href="#letter">Love Letter</a>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <!-- HOME -->
+        <section class="hero section" id="home">
+
+            <div class="hero-copy">
+
+                <p class="eyebrow">
+                    <span class="eyebrow-line"></span>
+                    A LITTLE PLACE FOR US
+                </p>
+
+                <h1>
+                    Every love story is beautiful,
+                    <br>
+                    <em>but ours is my favorite.</em>
+                </h1>
+
+                <p class="hero-description">
+                    Satu ruang kecil untuk menyimpan cerita, tawa,
+                    foto, dan kenangan yang selalu ingin dikenang.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a class="button button-primary" href="#gallery">
+                        Jelajahi kenangan <span>↗</span>
+                    </a>
+
+                    <a class="text-link" href="#story">
+                        Cerita kita ↓
+                    </a>
+
+                </div>
+
+                <div class="hero-note">
+                    <span class="status-dot"></span>
+                    Made with love, just for you
+                </div>
+
+            </div>
+
+            <!-- FOTO DEPAN: 1 FOTO UTAMA + 3 FOTO YANG BISA DITEKAN -->
+            <div class="hero-visual photo-showcase">
+
+                <div class="photo-orbit orbit-one"></div>
+                <div class="photo-orbit orbit-two"></div>
+
+                <figure class="hero-photo hero-photo-main" data-position="main" role="button" tabindex="0" aria-label="Foto utama, tekan untuk memilih foto">
+                    <img src="images/foto1.jpg.jpeg" alt="Kenangan bersama 1">
+                </figure>
+
+                <figure class="hero-photo hero-photo-small photo-two" data-position="one" role="button" tabindex="0" aria-label="Pilih foto kenangan 2">
+                    <img src="images/foto2.jpg.jpeg" alt="Kenangan bersama 2">
+                </figure>
+
+                <figure class="hero-photo hero-photo-small photo-three" data-position="two" role="button" tabindex="0" aria-label="Pilih foto kenangan 3">
+                    <img src="images/foto3.jpg.jpeg" alt="Kenangan bersama 3">
+                </figure>
+
+                <figure class="hero-photo hero-photo-small photo-four" data-position="three" role="button" tabindex="0" aria-label="Pilih foto kenangan 4">
+                    <img src="images/foto4.jpg.jpeg" alt="Kenangan bersama 4">
+                </figure>
+
+                <div class="floating-note">
+                    <span>♡</span>
+                    <div>
+                        <strong>My favorite person</strong>
+                        <small>Nazwa Ollong</small>
+                    </div>
+                </div>
+
+                <div class="sparkle sparkle-one">✦</div>
+                <div class="sparkle sparkle-two">✧</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- OUR STORY -->
+        <section class="story-section section" id="story">
+
+            <div class="section-heading">
+
+                <p class="eyebrow">CHAPTER 01 — US</p>
+
+                <h2>
+                    Our story,
+                    <em>our memories.</em>
+                </h2>
+
+                <p>
+                    Sejak hari itu, ada banyak hal sederhana
+                    yang terasa lebih berarti.
+                </p>
+
+            </div>
+
+            <div class="story-card">
+
+                <div class="story-icon">♡</div>
+
+                <div class="story-content">
+
+                    <span class="card-kicker">
+                        THE DAY OUR STORY BEGAN
+                    </span>
+
+                    <h3>01 Juni 2026</h3>
+
+                    <p>
+                        Hari ketika cerita kita dimulai.
+                        Semoga setiap halaman berikutnya selalu
+                        punya alasan untuk disyukuri.
+                    </p>
+
+                    <div class="counter-wrap">
+
+                        <div class="counter-number" id="daysTogether">
+                            —
+                        </div>
+
+                        <div>
+                            <strong>hari bersama</strong>
+                            <small>and counting...</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="story-decoration">
+                    01
+                    <br>
+                    <span>JUN</span>
+                    <br>
+                    2026
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- GALLERY -->
+        <section class="gallery-section section" id="gallery">
+
+            <div class="section-heading heading-row">
+
+                <div>
+
+                    <p class="eyebrow">
+                        CHAPTER 02 — THE GALLERY
+                    </p>
+
+                    <h2>
+                        Little moments,
+                        <em>big feelings.</em>
+                    </h2>
+
+                    <p>
+                        Potongan kecil dari cerita yang ingin kita simpan.
+                    </p>
+
+                </div>
+
+                <span class="count-label">
+                    06 MEMORIES <b>✦</b>
+                </span>
+
+            </div>
+
+
+            <div class="gallery-grid">
+
+                <button class="gallery-item gallery-large" data-image="poto1.jpg.jpeg">
+                    <img src="images/poto1.jpg.jpeg" alt="Foto kenangan 1">
+                    <span class="photo-caption">
+                        A beautiful day <b>↗</b>
+                    </span>
+                </button>
+
+                <button class="gallery-item" data-image="poto2.jpg.jpeg">
+                    <img src="images/poto2.jpg.jpeg" alt="Foto kenangan 2">
+                    <span class="photo-caption">
+                        Just us <b>↗</b>
+                    </span>
+                </button>
+
+                <button class="gallery-item" data-image="poto3.jpg.jpeg">
+                    <img src="images/poto3.jpg.jpeg" alt="Foto kenangan 3">
+                    <span class="photo-caption">
+                        My favorite view <b>↗</b>
+                    </span>
+                </button>
+
+                <button class="gallery-item" data-image="poto4.jpg.jpeg">
+                    <img src="images/poto4.jpg.jpeg" alt="Foto kenangan 4">
+                    <span class="photo-caption">
+                        A little adventure <b>↗</b>
+                    </span>
+                </button>
+
+                <button class="gallery-item" data-image="poto5.jpg.jpeg">
+                    <img src="images/poto5.jpg.jpeg" alt="Foto kenangan 5">
+                    <span class="photo-caption">
+                        Together is better <b>↗</b>
+                    </span>
+                </button>
+
+                <button class="gallery-item" data-image="poto6.jpg.jpeg">
+                    <img src="images/poto6.jpg.jpeg" alt="Foto kenangan 6">
+                    <span class="photo-caption">
+                        Forever remembered <b>↗</b>
+                    </span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- VIDEO GALLERY -->
+        <section class="video-section section" id="videos">
+
+            <div class="section-heading heading-row">
+
+                <div>
+
+                    <p class="eyebrow">
+                        CHAPTER 03 — MEMORIES
+                    </p>
+
+                    <h2>
+                        Press play,
+                        <em>relive the moment.</em>
+                    </h2>
+
+                    <p>
+                        Kenangan indah.
+                    </p>
+
+                </div>
+
+                <span class="count-label">
+                    04 VIDEOS <b>✦</b>
+                </span>
+
+            </div>
+
+
+            <div class="video-grid">
+
+                <!-- VIDEO 1 -->
+                <article class="video-card">
+
+                    <video controls preload="metadata" playsinline>
+                        <source src="images/video1.mp4" type="video/mp4">
+                        Browser kamu tidak mendukung video.
+                    </video>
+
+                    <div class="video-info">
+                        <span>MEMORY 01</span>
+                        <h3>Our favorite story</h3>
+                    </div>
+
+                </article>
+
+
+                <!-- VIDEO 2 -->
+                <article class="video-card">
+
+                    <video controls preload="metadata" playsinline>
+                        <source src="images/video2.mp4" type="video/mp4">
+                        Browser kamu tidak mendukung video.
+                    </video>
+
+                    <div class="video-info">
+                        <span>MEMORY 02</span>
+                        <h3>Little happiness</h3>
+                    </div>
+
+                </article>
+
+
+                <!-- VIDEO 3 -->
+                <article class="video-card">
+
+                    <video controls preload="metadata" playsinline>
+                        <source src="images/video3.mp4" type="video/mp4">
+                        Browser kamu tidak mendukung video.
+                    </video>
+
+                    <div class="video-info">
+                        <span>MEMORY 03</span>
+                        <h3>A day to remember</h3>
+                    </div>
+
+                </article>
+
+
+                <!-- VIDEO 4 -->
+                <article class="video-card">
+
+                    <video controls preload="metadata" playsinline>
+                        <source src="images/video4.mp4" type="video/mp4">
+                        Browser kamu tidak mendukung video.
+                    </video>
+
+                    <div class="video-info">
+                        <span>MEMORY 04</span>
+                        <h3>One of our moments</h3>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOVE LETTER -->
+        <section class="letter-section section" id="letter">
+
+            <div class="letter-card">
+
+                <div class="letter-flower">✿</div>
+
+                <p class="eyebrow">
+                    A NOTE FROM THE HEART
+                </p>
+
+                <h2>
+                    For you,
+                    <em>Nazwa.</em>
+                </h2>
+
+                <p class="letter-intro">
+                    Ada pesan kecil yang ingin disampaikan.
+                </p>
+
+                <button class="button button-primary" id="openLetter">
+                    Buka surat kecil ini <span>♡</span>
+                </button>
+
+
+                <div class="letter-message" id="letterMessage" hidden>
+
+                    <p>Untuk Nazwa Ollong,</p>
+
+                    <p>
+                        Makasih su jadi bagian dari cerita ini. Bt mungkin seng selalu punya kata-kata yang sempurna, Tapi bt tarus balajar par menghargai setiap momen, Mendengarkan, Deng menjaga hubungan ini dengan baik.
+                    </p>
+
+                    <p>
+                        Semoga katong selalu punya banyak alasan untuk tersenyum, Saling mendukung, Dan bikin kenangan indah sama-sama.
+                    </p>
+
+                    <p class="signature">
+                        With love,
+                        <strong>Mato ♡</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <a class="brand" href="#home">
+            <span class="brand-mark">♡</span>
+            our little story
+        </a>
+
+        <p>Made with care · 01.06.2026</p>
+
+        <a href="#home" class="back-top">
+            Back to top ↑
+        </a>
+
+    </footer>
+
+
+    <!-- LIGHTBOX FOTO -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+
+        <button class="lightbox-close" id="closeLightbox" aria-label="Tutup">
+            ×
+        </button>
+
+        <button class="lightbox-arrow prev" id="prevPhoto" aria-label="Foto sebelumnya">
+            ‹
+        </button>
+
+        <img id="lightboxImage" src="" alt="Foto diperbesar">
+
+        <button class="lightbox-arrow next" id="nextPhoto" aria-label="Foto berikutnya">
+            ›
+        </button>
+
+        <p id="lightboxCount"></p>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="js/script.js"></script>
+
+    <!-- INTERAKSI 3 FOTO BELAKANG: KLIK UNTUK PINDAH KE DEPAN -->
+    <script>
+        (function () {
+            const heroPhotos = document.querySelectorAll('.hero-visual .hero-photo[data-position]');
+
+            function swapHeroPhoto(selectedPhoto) {
+                const currentMain = document.querySelector('.hero-visual .hero-photo[data-position="main"]');
+                if (!currentMain || !selectedPhoto || selectedPhoto === currentMain) return;
+
+                const oldMainPosition = currentMain.dataset.position;
+                const selectedPosition = selectedPhoto.dataset.position;
+
+                currentMain.dataset.position = selectedPosition;
+                selectedPhoto.dataset.position = oldMainPosition;
+            }
+
+            heroPhotos.forEach(function (photo) {
+                photo.addEventListener('click', function () {
+                    swapHeroPhoto(photo);
+                });
+
+                photo.addEventListener('keydown', function (event) {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        swapHeroPhoto(photo);
+                    }
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>
